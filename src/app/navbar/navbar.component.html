@@ -1,0 +1,37 @@
+<ui-toolbar class="primary">
+    <button class="ui-button flat icon" uiRipple (click)="sidenav.open()">
+        <i class="material-icons">menu</i>
+    </button>
+    <!-- <img class="logo" src="http://smn.com.br/content/img/logotipo/light-lying.svg" alt=""> -->
+    <span class="title">CURSO SMN - NODE | {{ title }}</span>
+</ui-toolbar>
+
+<mat-sidenav #sidenav class="sidenav">
+    <button class="ui-button flat icon" uiRipple (click)="sidenav.close()">
+        <i class="material-icons">arrow_back</i>
+    </button>
+    <div class="ui-list">
+        <mat-list>
+            <mat-list-item> CURSO SMN - NODE </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <!-- Home -->
+            <mat-list-item>
+                <a class="ui-list-item" routerlink="/home" href="/home">
+                    <i class="material-icons" style="margin-right: 10px">home</i>
+                    Home
+                </a>
+            </mat-list-item>
+
+            <!-- Usuarios -->
+            <mat-list-item>
+                <a class="ui-list-item" routerlink="/usuarios" href="/usuarios">
+                    <i class="material-icons" style="margin-right: 10px">person</i>
+                    Usuarios
+                </a>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</mat-sidenav>
+
+<router-outlet></router-outlet>

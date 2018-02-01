@@ -1,0 +1,60 @@
+<ui-card style="width: 700px; margin: auto;">
+    <ui-toolbar class="flat">
+        <button class="ui-button flat icon" routerLink="/home" uiRipple>
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </ui-toolbar>
+
+    <ui-data-table>
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th class="align-right"></th>
+            </tr>
+
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{ usuario.nome }}</td>
+                <td>{{ usuario.cpf }}</td>
+                <td>{{ usuario.email }}</td>
+                <td class="align-right">
+                    <button class="ui-button flat icon" style="cursor: pointer;" uiRipple [routerLink]="['/usuario', usuario.id]">
+                        <i class="material-icons">edit</i>
+                    </button>
+
+                    <button class="ui-button flat icon" style="cursor: pointer;" uiRipple (click)="deletar(usuario.id)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="!usuarios">
+                <td colspan="5">Nenhum registro encontrado...</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="4" class="align-right">
+                    <div class="ui-button-container align-right">
+                        <span class="pagination">
+                            Pagina: {{ filtro.pagina }} de {{ totalPaginas }} - Registros: {{ totalRegistros }}
+                        </span>
+                        <button class="ui-button flat icon" uiRipple (click)="voltarPagina()" [disabled]="filtro.pagina == 1">
+                            <i class="material-icons">keyboard_arrow_left</i>
+                        </button>
+                        <button class="ui-button flat icon" uiRipple (click)="proximaPagina()" [disabled]="filtro.pagina == totalPaginas || !totalPaginas">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </ui-data-table>
+</ui-card>
+
+<div class="ui-fab-container">
+    <button class="ui-button primary fab" routerLink="/usuario/novo" uiRipple>
+        <i class="material-icons">add</i>
+    </button>
+</div>
